@@ -1,6 +1,7 @@
 package com.github.fescalhao
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 
 import java.util.Properties
@@ -15,6 +16,15 @@ package object PackageUtils {
 
   def readFile(sparkContext: SparkContext, path: String): RDD[String] = {
     sparkContext.textFile(path)
+  }
+
+  def getSparkSession(appName: String): SparkSession = {
+    val conf = getSparkConf(appName)
+
+    SparkSession
+      .builder()
+      .config(conf)
+      .getOrCreate()
   }
 
   private def getSparkConf(appName: String): SparkConf = {

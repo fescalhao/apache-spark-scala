@@ -12,7 +12,7 @@ object AverageFriendsByAge extends Serializable {
     logger.info("Creating spark context")
     val spark: SparkContext = getSparkContext("Average Friends By Age")
 
-    logger.info("Loading fakefriends.csv file")
+    logger.info("Loading fakefriends-header.csv file")
     val lines: RDD[String] = readFile(spark, "datasets/fakefriends.csv")
 
     logger.info("Parsing each line to get the age and the number of friends")
@@ -33,6 +33,7 @@ object AverageFriendsByAge extends Serializable {
       println(f"Age: ${result._1} -> Avg. Friends: ${result._2}%.2f")
     })
 
+    logger.info("Stopping Spark")
     spark.stop()
   }
 

@@ -31,6 +31,9 @@ object MinimumTemperature extends Serializable {
     minTempByStation.foreach(measure => {
       println(s"Station: ${measure._1} -> Temp: ${measure._2}")
     })
+
+    logger.info("Stopping Spark")
+    spark.stop()
   }
 
   def parseLine(line: String): (String, String, Float) = {

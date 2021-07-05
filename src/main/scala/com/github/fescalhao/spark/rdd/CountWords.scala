@@ -28,5 +28,8 @@ object CountWords extends Serializable {
     wordCount.foreach(word => {
       println(s"${word._1} -> ${word._2}")
     })
+
+    logger.info("Stopping Spark")
+    spark.stop()
   }
 }

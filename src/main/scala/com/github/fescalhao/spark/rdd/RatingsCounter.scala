@@ -30,6 +30,7 @@ object RatingsCounter extends Serializable {
     logger.info("Printing ordered results")
     sortedResults.foreach(println)
 
+    logger.info("Stopping Spark")
     spark.stop()
   }
 }
